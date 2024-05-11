@@ -44,7 +44,7 @@ void close(){
     //Quit SDL subsystems
     SDL_Quit();
 }
-void mainloop(){
+void rectsetup(){
     renderer =  SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED);
 
     // Set render color to red ( background will be rendered in this color )
@@ -74,7 +74,7 @@ int main( int argc, char* args[] )
         printf( "Failed to initialize!\n" );
         return 1;
     }
-    mainloop();
+    rectsetup();
     //SDL_Delay(1500);
     SDL_Event e; 
     bool quit = false; 
@@ -82,7 +82,7 @@ int main( int argc, char* args[] )
         while( SDL_PollEvent( &e ) ){ 
             if( e.type == SDL_QUIT ) quit = true; 
             if( e.type == SDL_KEYDOWN){ 
-                r.x += 1; SDL_Delay(10);
+                r.x += 5; SDL_Delay(2);
                 SDL_RenderFillRect( renderer, &r );
                 SDL_RenderPresent(renderer);
             }
