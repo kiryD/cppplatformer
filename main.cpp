@@ -81,7 +81,7 @@ int main( int argc, char* args[] )
     while( quit == false ){ 
         while( SDL_PollEvent( &e ) ){ 
             if( e.type == SDL_QUIT ) quit = true; 
-            if( e.type == SDL_KEYDOWN){ 
+            if( e.type == SDL_KEYDOWN and e.key.keysym.sym == SDLK_SPACE){ 
                 r.x += 5; SDL_Delay(2);
                 SDL_RenderFillRect( renderer, &r );
                 SDL_RenderPresent(renderer);
