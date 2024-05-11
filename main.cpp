@@ -8,9 +8,12 @@ const int SCREEN_HEIGHT = 720;
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
-    
+
+SDL_Renderer* renderer = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
+
+SDL_Rect r;
 
 //Starts up SDL and creates window
 bool init(){
@@ -42,7 +45,6 @@ void close(){
     SDL_Quit();
 }
 void mainloop(){
-    SDL_Renderer* renderer = NULL;
     renderer =  SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED);
 
     // Set render color to red ( background will be rendered in this color )
@@ -50,14 +52,11 @@ void mainloop(){
 
     // Clear winow
     SDL_RenderClear( renderer );
-
-    // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-    SDL_Rect r;
+    
     r.x = 50;
     r.y = 50;
     r.w = 50;
     r.h = 50;
-
     // Set render color to blue ( rect will be rendered in this color )
     SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
 
@@ -77,7 +76,18 @@ int main( int argc, char* args[] )
     }
     mainloop();
     //SDL_Delay(1500);
-    SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+    SDL_Event e; 
+    bool quit = false; 
+    while( quit == false ){ 
+        while( SDL_PollEvent( &e ) ){ 
+            if( e.type == SDL_QUIT ) quit = true; 
+            if( e.type == SDL_KEYDOWN){ 
+                r.x += 1; SDL_Delay(10);
+                SDL_RenderFillRect( renderer, &r );
+                SDL_RenderPresent(renderer);
+            }
+        } 
+    }
     //Free resources and close SDL
     close();
 	return 0;
