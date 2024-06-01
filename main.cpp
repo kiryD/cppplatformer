@@ -20,7 +20,7 @@ SDL_Renderer* renderer = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
 
-SDL_Rect r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14;
+SDL_Rect r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15;
 
 struct Color{
     int r = 0;
@@ -122,12 +122,12 @@ void rectsetup(){
     r11.w = 140;
     r11.h = 50;
 
-    r12.x = 728;
-    r12.y = 620;
+    r12.x = 320;
+    r12.y = 600;
     r12.w = 140;
     r12.h = 50;
 
-    r13.x = 482;
+    r13.x = 490;
     r13.y = 580;
     r13.w = 140;
     r13.h = 50;
@@ -136,6 +136,12 @@ void rectsetup(){
     r14.y = 580;
     r14.w = 140;
     r14.h = 50;
+
+    r15.x = 0;
+    r15.y = 400;
+    r15.w = 1200;
+    r15.h = 0;
+
 
     // Set render color to blue ( rect will be rendered in this color )
     SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
@@ -222,7 +228,7 @@ bool checkCollision( SDL_Rect a, SDL_Rect b )
 }
 void physics(){
     r1.y += 1;
-    if (checkCollision(r1,r2) or checkCollision(r1,r3) or checkCollision(r1,r4) or checkCollision(r1,r5) or checkCollision(r1,r6) or checkCollision(r1,r7) or checkCollision(r1,r8) or checkCollision(r1,r9) or checkCollision(r1,r10) or checkCollision(r1,r11) or checkCollision(r1,r12) or checkCollision(r1,r13) or checkCollision(r1,r14)){
+    if (checkCollision(r1,r2) or checkCollision(r1,r3) or checkCollision(r1,r4) or checkCollision(r1,r5) or checkCollision(r1,r6) or checkCollision(r1,r7) or checkCollision(r1,r15) or checkCollision(r1,r9) or checkCollision(r1,r10) or checkCollision(r1,r11) or checkCollision(r1,r12) or checkCollision(r1,r13) or checkCollision(r1,r14) or checkCollision(r1,r8)){
         r1.y -= 1;
         onFloor = true;
     }
